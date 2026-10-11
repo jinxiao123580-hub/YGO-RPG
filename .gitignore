@@ -1,0 +1,12 @@
+# 大文件 / 需现场重新获取的数据 (README 有重建说明)
+sources/raw/cardinfo_full.json
+sources/raw/cardsets.json
+sources/raw/archetypes.json
+sources/ygohost_en_rulebook.pdf
+db/cards_zh.cdb
+db/pack_reference.db
+db/ygo_master.db
+db/*.ydk
+# 运行时产物
+*.log
+__pycache__/

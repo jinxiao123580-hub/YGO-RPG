@@ -1,0 +1,15 @@
+{
+  "welcome": ["石之门在此。通过试炼者，方可前行。", "报上名来。 ——不必了，卡会代替名字。"],
+  "deckerror": ["卡组不合规。石门不容许偏差。"],
+  "duelstart": ["试炼，开始。"],
+  "newturn": ["我的回合。"],
+  "endturn": ["回合结束。"],
+  "directattack": ["石之重击。"],
+  "attack": ["碎石。"],
+  "ondirectattack": ["唔……石头的痛，石头自己知道。"],
+  "facedownmonstername": "石之影",
+  "activate": ["门的力量——{0}。"],
+  "summon": ["石兽，起。"],
+  "setmonster": ["沉默地等着。"],
+  "chaining": ["石门记下了你的轻举妄动。"]
+}
