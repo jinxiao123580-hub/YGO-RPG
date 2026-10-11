@@ -18,7 +18,7 @@ sources/
   raw/               YGOPRODECK 原始 JSON (cardinfo 24.9MB / cardsets / archetypes)
 content/
   bot_campaign.conf  ★ 战役 NPC 条目 (追加到 MDPro3 bot.conf 即可部署)
-  dialogs/*.zh-CN.json   ★ NPC 台词包 (复制到 MDPro3/Windbot/Dialogs/)
+  dialogs/*.zh-CN.json ★ 7个NPC台词包(全8章守门人) (复制到 MDPro3/Windbot/Dialogs/)
   decks/npc_*.ydk        NPC 卡组 (店主/门卫/晓, 禁限表合规已校验)
   decks/player_starter.ydk  玩家初始卡组 (40张, 含沉睡青眼白龙)
 scripts/
@@ -32,7 +32,7 @@ docs/
   design/02-随机抽卡机制.md   ★ 保底/权重/剧情接口
   design/03-剧情超规则.md     ★ L0-L4 分级超规则体系
   campaign/00-战役总纲.md     ★ 八章结构/规则解锁/难度曲线 (改编牛戏王+决斗者王国)
-  campaign/01-第一章剧本.md   ★ 分镜稿含教学台词模板与胜负分支
+  campaign/01-第一章剧本.md + 05-第二章剧本   ★ 分镜稿含教学台词模板与胜负分支
   campaign/02-跑团规则.md     2d6 检定/羁绊/败北分支表/觉醒度
   campaign/03-GM提示词.md     ★ AI-GM 系统提示词(十条纪律)+使用流程
   campaign/04-存档结构.md     存档 JSON schema

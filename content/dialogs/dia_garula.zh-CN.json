@@ -1,0 +1,15 @@
+{
+  "welcome": ["佣兵只看报酬。你的卡，够格吗？", "龙不与弱者同行。"],
+  "deckerror": ["……卡组出了差错。佣金减半。"],
+  "duelstart": ["龙群，听我号令。"],
+  "newturn": ["龙群的回合。"],
+  "endturn": ["该你了，猎物。"],
+  "directattack": ["俯冲——贯穿！"],
+  "attack": ["龙爪，撕裂！"],
+  "ondirectattack": ["哼，有效打击而已。"],
+  "facedownmonstername": "伏兵",
+  "activate": ["佣兵的规矩——{0}。"],
+  "summon": ["龙群，列阵！"],
+  "setmonster": ["伏击姿势。"],
+  "chaining": ["连锁——龙群的连携，超乎你想象。"]
+}

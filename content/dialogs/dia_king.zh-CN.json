@@ -1,0 +1,15 @@
+{
+  "welcome": ["凡人。报上你的真名。——不必了，名字在祭坛上毫无意义。", "吾即遗迹，遗迹即吾。"],
+  "deckerror": ["亵渎。重整你的行列。"],
+  "duelstart": ["最后一扇门。龙之真名，在此定夺。"],
+  "newturn": ["吾之回合。"], 
+  "endturn": ["回合终了。献上余勇吧。"],
+  "directattack": ["王之威光，直贯而下。"],
+  "attack": ["咆哮。"],
+  "ondirectattack": ["……凡人之躯，竟伤到王。"],
+  "facedownmonstername": "沉眠之影",
+  "activate": ["以王之名——{0}。"],
+  "summon": ["白龙，随吾苏醒！"],
+  "setmonster": ["静候。"],
+  "chaining": ["王的连锁，凡人不可见。"]
+}
