@@ -1,0 +1,149 @@
+=== MSG_WIN
+   1B | 1B
+=== MSG_SELECT_BATTLECMD
+   1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 4B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | 1B | 1B
+=== MSG_SELECT_IDLECMD
+   1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 4B | 1B | 1B | 1B
+=== MSG_SELECT_EFFECTYN
+   1B | 4B | 1B | 1B | 1B | 1B | 4B
+=== MSG_SELECT_YESNO
+   1B | 4B
+=== MSG_SELECT_OPTION
+   1B | 1B | 4B
+=== MSG_SELECT_CARD
+   1B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B
+=== MSG_SELECT_TRIBUTE
+   1B | 1B | 1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 1B
+MSG_SELECT_UNSELECT: 客户端未处理(仅透传或无此消息)
+=== MSG_SELECT_CHAIN
+   1B | 1B | 1B | 4B | 4B | FOR count=count: | 1B | 1B | 4B | 1B | 1B | 1B | 1B | 4B
+MSG_SELECT_PLACE: 客户端未处理(仅透传或无此消息)
+=== MSG_SELECT_DISFIELD
+   1B | 1B | 4B
+=== MSG_SELECT_POSITION
+   1B | 4B | 1B
+=== MSG_SELECT_COUNTER
+   1B | uint16_t | uint16_t | 1B | FOR count=count: | 4B | 1B | 1B | 1B | uint16_t
+=== MSG_SELECT_SUM
+   1B | 1B | 4B | 1B | 1B | 1B | FOR count=mainGame: | 4B | 1B | 1B | 1B | 4B | 1B | FOR count=count: | 4B | 1B | 1B | 1B | 4B
+=== MSG_SORT_CARD
+   1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B
+MSG_SORT_CHAIN: 客户端未处理(仅透传或无此消息)
+=== MSG_CONFIRM_DECKTOP
+   1B | 1B | FOR count=count: | 4B | SKIP 3B | FOR count=count:
+=== MSG_CONFIRM_EXTRATOP
+   1B | 1B | FOR count=count: | 4B | SKIP 3B | FOR count=count:
+=== MSG_CONFIRM_CARDS
+   1B | 1B | 1B | FOR count=count: | 4B | 1B | 1B | 1B
+=== MSG_SHUFFLE_HAND
+   1B | 1B | 4B
+=== MSG_SHUFFLE_EXTRA
+   1B | 1B | FOR count=5: | 4B
+=== MSG_SWAP_GRAVE_DECK
+   1B
+=== MSG_REVERSE_DECK
+   
+=== MSG_DECK_TOP
+   1B | 1B | 4B
+=== MSG_SHUFFLE_SET_CARD
+   1B | 1B | FOR count=count: | 1B | 1B | 1B | 1B | FOR count=count: | 1B | 1B | 1B | 1B | FOR count=count:
+=== MSG_NEW_TURN
+   1B
+=== MSG_NEW_PHASE
+   uint16_t
+=== MSG_MOVE
+   4B | 1B | 1B | 1B | 1B | 1B | 1B | 1B | 1B | 4B
+=== MSG_POS_CHANGE
+   4B | 1B | 1B | 1B | 1B | 1B
+=== MSG_SET
+   4B | 1B | 1B | 1B | 1B
+=== MSG_SWAP
+   4B | 1B | 1B | 1B | 1B | 4B | 1B | 1B | 1B | 1B
+=== MSG_FIELD_DISABLED
+   4B
+=== MSG_SUMMONED
+   
+=== MSG_SPSUMMONED
+   
+MSG_FLIP_SUMMONED: 客户端未处理(仅透传或无此消息)
+=== MSG_SUMMONING
+   4B | 1B | 1B | 1B | 1B
+=== MSG_SPSUMMONING
+   4B | 1B | 1B | 1B | 1B
+MSG_FLIP_SUMMONING: 客户端未处理(仅透传或无此消息)
+=== MSG_CHAINING
+   4B | 1B | 1B | 1B | 1B | 1B | 1B | 1B | 4B | 1B
+=== MSG_CHAINED
+   1B
+=== MSG_CHAIN_SOLVING
+   1B | FOR count=5:
+=== MSG_CHAIN_SOLVED
+   1B
+=== MSG_CHAIN_END
+   
+MSG_CHAIN_NEGATED: 客户端未处理(仅透传或无此消息)
+=== MSG_CHAIN_DISABLED
+   1B
+=== MSG_CARD_SELECTED
+   
+=== MSG_RANDOM_SELECTED
+   1B | 1B | FOR count=count: | 1B | 1B | 1B | 1B
+=== MSG_BECOME_TARGET
+   1B | FOR count=count: | 1B | 1B | 1B | 1B | FOR count=3:
+=== MSG_DRAW
+   1B | 1B | FOR count=count: | 4B | FOR count=count: | FOR count=count:
+=== MSG_DAMAGE
+   1B | 4B
+=== MSG_RECOVER
+   1B | 4B
+=== MSG_LPUPDATE
+   1B | 4B
+MSG_PAY_LP_COST: 客户端未处理(仅透传或无此消息)
+=== MSG_EQUIP
+   1B | 1B | 1B | 1B | 1B | 1B | 1B | 1B
+=== MSG_UNEQUIP
+   1B | 1B | 1B | 1B
+=== MSG_CARD_TARGET
+   1B | 1B | 1B | 1B | 1B | 1B | 1B | 1B
+=== MSG_CANCEL_TARGET
+   1B | 1B | 1B | 1B | 1B | 1B | 1B | 1B
+=== MSG_ADD_COUNTER
+   uint16_t | 1B | 1B | 1B | uint16_t
+=== MSG_REMOVE_COUNTER
+   uint16_t | 1B | 1B | 1B | uint16_t
+=== MSG_ATTACK
+   1B | 1B | 1B | 1B | 1B | 1B | 1B | 1B
+=== MSG_BATTLE
+   1B | 1B | 1B | 1B | 4B | 4B | 1B | 1B | 1B | 1B | 1B | 4B | 4B | 1B
+=== MSG_ATTACK_DISABLED
+   
+=== MSG_DAMAGE_STEP_START
+   
+=== MSG_DAMAGE_STEP_END
+   
+=== MSG_MISSED_EFFECT
+   4B | 4B
+=== MSG_TOSS_COIN
+   1B | 1B | FOR count=count: | 1B
+=== MSG_TOSS_DICE
+   1B | 1B | FOR count=count: | 1B
+=== MSG_ROCK_PAPER_SCISSORS
+   1B
+MSG_HAND_RESULT: 客户端未处理(仅透传或无此消息)
+=== MSG_ANNOUNCE_RACE
+   1B | 1B | 4B
+=== MSG_ANNOUNCE_ATTRIB
+   1B | 1B | 4B
+=== MSG_ANNOUNCE_CARD
+   1B | 1B | 4B
+=== MSG_ANNOUNCE_NUMBER
+   1B | 1B | FOR count=12: | FOR count=count: | 4B | FOR count=12:
+MSG_ANNOUNCE_CARDFILTER: 客户端未处理(仅透传或无此消息)
+=== MSG_CARD_HINT
+   1B | 1B | 1B | 1B | 1B | 4B
+=== MSG_PLAYER_HINT
+   1B | 1B | 4B
+=== MSG_MATCH_KILL
+   4B
+=== MSG_TAG_SWAP
+   1B | 1B | 1B | 1B | 1B | 4B | 4B | 4B

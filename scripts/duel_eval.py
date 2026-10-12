@@ -65,7 +65,7 @@ def play_one(exe_a, file_a, exe_b, file_b, tag):
     result = "draw"
     for who, bot in (("A", botA), ("B", botB)):
         try:
-            log = (LOGS / f"{tag}_{who.lower()}.log").read_text(encoding="utf-8", errors="replace")
+            log = (LOGS / f"{tag}_{who.lower()}.log").read_text(encoding="gbk", errors="replace")
             m = re.search(r"\[对局结束\] vs \S+ -> (Win|Lose|Draw) \(turn=(\d+)\)", log)
             if m:
                 if (m.group(1) == "Win" and who == "A") or (m.group(1) == "Lose" and who == "B"):
