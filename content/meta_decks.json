@@ -1,0 +1,56 @@
+{
+ "Altergeist": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\Altergeist_meta.ydk",
+  "name": "ALTERGEIST funcional",
+  "main": 44,
+  "extra": 13,
+  "side": 0,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/altergeist-funcional-737552"
+ },
+ "Blue-Eyes": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\Blue-Eyes_meta.ydk",
+  "name": "IRL Genesys Blue-Eyes 2026-OCT v3",
+  "main": 47,
+  "extra": 15,
+  "side": 15,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/irl-genesys-blue-eyes-2026-oct-v3-737778"
+ },
+ "Labrynth": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\Labrynth_meta.ydk",
+  "name": "BETB Labrynth",
+  "main": 46,
+  "extra": 15,
+  "side": 12,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/betb-labrynth-737900"
+ },
+ "Ryzeal": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\Ryzeal_meta.ydk",
+  "name": "RYZEAL OTO",
+  "main": 42,
+  "extra": 15,
+  "side": 15,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/ryzeal-oto-737591"
+ },
+ "SkyStriker": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\SkyStriker_meta.ydk",
+  "name": "Sky striker structure (?)",
+  "main": 40,
+  "extra": 15,
+  "side": 15,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/sky-striker-structure-737899"
+ },
+ "Tearlaments": {
+  "file": "E:\\FUN\\YGO-RPG\\YGO\\MDPro3\\deck\\meta\\Tearlaments_meta.ydk",
+  "name": "Orbital Tearlaments",
+  "main": 40,
+  "extra": 15,
+  "side": 0,
+  "placement": "Tournament Meta",
+  "url": "https://ygoprodeck.com/deck/orbital-tearlaments-737869"
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "Altergeist|Blue-Eyes": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ },
+ "Altergeist|DarkMagician": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ },
+ "Altergeist|Labrynth": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ },
+ "Blue-Eyes|DarkMagician": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ },
+ "Blue-Eyes|Labrynth": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ },
+ "DarkMagician|Labrynth": {
+  "a_win": 0,
+  "b_win": 0,
+  "draw": 1
+ }
+}
