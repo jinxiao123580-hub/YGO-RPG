@@ -190,6 +190,86 @@ def cmd_export(name, out_path):
     print(f"导出 {name}: 主{len(main)} 额外{len(extra)} -> {out_path}")
 
 
+# ============================================================
+# MD 风格开包 + 收藏库 + 技能注册 (campaign_library 扩展)
+# ============================================================
+
+RARITY_NAME = {"N": "普通", "R": "稀有", "SR": "超稀有", "UR": "究极稀有"}
+PACK_SIZE = 6          # 每包6张: 5普通槽+1稀有槽
+SR_CHANCE = 20         # 稀有槽 1/20 出 SR
+UR_CHANCE = 100        # 稀有槽 1/100 出 UR
+PITY_PACKS = 10        # 连开10包无SR+ -> 下一包必出SR+
+
+
+def pack_open(con, pool_ids, packs, owner="player"):
+    """开包: 每包5普通+1稀有(可升SR/UR), 大保底计数, 写入收藏"""
+    results = []
+    try:
+        row = con.execute("SELECT value FROM meta_pack WHERE key='pity'").fetchone()
+        pity_n = int(row[0]) if row else 0
+    except Exception:
+        con.execute("CREATE TABLE IF NOT EXISTS meta_pack(key TEXT PRIMARY KEY, value TEXT)")
+        pity_n = 0
+    for pn in range(packs):
+        pack = []
+        force_sr = (pity_n + 1) >= PITY_PACKS
+        # 5 普通槽
+        for _ in range(5):
+            pack.append(_pick_weighted(con, pool_ids, max_rarity="R"))
+        # 1 稀有槽
+        rare = _pick_weighted(con, pool_ids, max_rarity="R")
+        roll = con.execute("SELECT 1").fetchone() and __import__("random").randint(1, UR_CHANCE)
+        if roll == 1:
+            rare = _pick_weighted(con, pool_ids, min_rarity="UR")
+        elif roll <= SR_CHANCE:
+            rare = _pick_weighted(con, pool_ids, min_rarity="SR")
+        if force_sr and RARITY_ORDER.get(rare[1], 0) < RARITY_ORDER["SR"]:
+            rare = _pick_weighted(con, pool_ids, min_rarity="SR")
+        pack.append(rare)
+        # 入库
+        has_sr = False
+        for cid, rar in pack:
+            con.execute("""INSERT INTO collection(id,count,first_from) VALUES(?,1,?)
+                ON CONFLICT(id) DO UPDATE SET count=count+1""", (cid, f"pack:{'+'.join(pool_ids)}"))
+            if RARITY_ORDER.get(rar, 0) >= RARITY_ORDER["SR"]:
+                has_sr = True
+            con.execute("INSERT INTO draw_log(pool_id,id,rarity,seed) VALUES(?,?,?,?)",
+                        ("+".join(pool_ids), cid, rar, pn))
+        results.append(pack)
+        pity_n = 0 if has_sr else pity_n + 1
+    con.execute("CREATE TABLE IF NOT EXISTS meta_pack(key TEXT PRIMARY KEY, value TEXT)")
+    con.execute("INSERT INTO meta_pack VALUES('pity',?) "
+                "ON CONFLICT(key) DO UPDATE SET value=excluded.value", (str(pity_n),))
+    con.commit()
+    return results
+
+
+def _pick_weighted(con, pool_ids, min_rarity=None, max_rarity=None):
+    """按稀有度区间加权抽一张 (基于 pack_cards 权重与投放稀有度)"""
+    import random as _r
+    ph = ",".join("?" * len(pool_ids))
+    rows = con.execute(
+        f"SELECT id, rarity, weight FROM pool_cards WHERE pool_id IN ({ph})",
+        pool_ids).fetchall()
+    if not rows:
+        return (0, "N")
+    def ok(r):
+        v = RARITY_ORDER.get(r, 0)
+        if min_rarity and v < RARITY_ORDER[min_rarity]:
+            return False
+        if max_rarity and v > RARITY_ORDER[max_rarity]:
+            return False
+        return True
+    cand = [r for r in rows if ok(r[1])] or rows
+    total = sum(r[2] for r in cand)
+    x = _r.uniform(0, total)
+    for r in cand:
+        x -= r[2]
+        if x <= 0:
+            return (r[0], r[1])
+    return (cand[-1][0], cand[-1][1])
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "init"
     if cmd == "init":
@@ -205,3 +285,44 @@ if __name__ == "__main__":
         cmd_draw(sys.argv[2].split("+"), int(sys.argv[3]))
     elif cmd == "export":
         cmd_export(sys.argv[2], sys.argv[3])
+    elif cmd == "pack":
+        pools = sys.argv[2].split("+")
+        n = int(sys.argv[3]) if len(sys.argv) > 3 else 1
+        con = campaign_con()
+        init()
+        res = pack_open(con, pools, n)
+        m = sqlite3.connect(str(MASTER))
+        for i, pack in enumerate(res, 1):
+            print(f"--- 第{i}包 ---")
+            for cid, rar in pack:
+                nm = m.execute("SELECT name FROM texts WHERE id=?", (cid,)).fetchone()
+                print(f"  [{RARITY_NAME.get(rar, rar)}] {nm[0] if nm else cid}")
+    elif cmd == "collection":
+        con = campaign_con()
+        mdb = sqlite3.connect(str(MASTER))
+        rows = con.execute(
+            "SELECT id, count FROM collection ORDER BY count DESC, id").fetchall()
+        print(f"收藏共 {len(rows)} 种:")
+        for cid, cnt in rows:
+            nm = mdb.execute("SELECT name FROM texts WHERE id=?", (cid,)).fetchone()
+            print(f"  x{cnt:<3} {nm[0] if nm else cid}")
+    elif cmd == "build":
+        # build <文件.ydk> : 从收藏组卡 (每卡最多3张, 主≤40 额外≤15)
+        out = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "db" / "collection_deck.ydk")
+        con = campaign_con()
+        rows = con.execute("SELECT id, MIN(count,3) AS n FROM collection ORDER BY id").fetchall()
+        m = sqlite3.connect(str(MASTER))
+        main_cards, extra_cards = [], []
+        for cid, n in rows:
+            t = m.execute("SELECT type FROM cards_intl WHERE id=?", (cid,)).fetchone()
+            bucket = extra_cards if t and any(k in (t[0] or "") for k in ("Fusion", "Synchro", "Xyz", "Link")) else main_cards
+            bucket += [cid] * n
+        NL = chr(10)
+        content = ("#created by campaign collection" + NL + "#main" + NL +
+                   NL.join(map(str, main_cards[:40])) + NL +
+                   "#extra" + NL + NL.join(map(str, extra_cards[:15])) + NL +
+                   "!side" + NL)
+        Path(out).write_text(content, encoding="utf-8")
+        print(f"从收藏组卡: 主{len(main_cards[:40])} 额外{len(extra_cards[:15])} -> {out}")
+
+
